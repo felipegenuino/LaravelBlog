@@ -19,9 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/posts/{post}', function ($post) {
-    return view('posts.post', ['post' => $post]);
-});
+Route::get('/posts/{post}', [App\Http\Controllers\HomeController::class, 'show']);
 
 
 Route::get('/dashboard', function () {
