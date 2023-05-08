@@ -1,3 +1,5 @@
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
 @forelse ($posts as $post)
     <div>
         <h1>post: {{ $post->title }}</h1>
@@ -18,3 +20,5 @@
 @empty
     <h3>Nenhum post encontrado</h3>
 @endforelse
+
+{{ $posts->links() }}

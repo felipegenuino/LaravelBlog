@@ -19,7 +19,7 @@ class HomeController extends Controller
          // $posts = Post::latest()->paginate(5);
         //  $posts = Post::all();
        //$posts = Post::where('published', true)->latest()->paginate(5);
-     $posts = Post::where('published', true)->get();
+     $posts = Post::where('published', true)->paginate(5);
 
 
         return view('posts.index', compact('posts'));
