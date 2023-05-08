@@ -1,5 +1,5 @@
 <h1>post: {{ $post->title }}</h1>
-<em>Criado em {{ $post->created_at->format('d/M/Y H:i:s') }}</em>
+<em>Criado em {{ $post->created_at->diffForHumans() }}</em>
 <hr>
 <pre>
     {{ $post->id }}
