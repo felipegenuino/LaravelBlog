@@ -20,6 +20,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/posts/{post}', [App\Http\Controllers\HomeController::class, 'show']);
 
 
+
+// Rota admin posts
+Route::get('/admin/posts', [App\Http\Controllers\Admin\PostsController::class, 'index']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
