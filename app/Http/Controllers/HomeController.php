@@ -13,6 +13,18 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      */
+
+    public function index(){
+        // $posts = Post::latest()->take(5)->get();
+         // $posts = Post::latest()->paginate(5);
+        //  $posts = Post::all();
+       //$posts = Post::where('published', true)->latest()->paginate(5);
+     $posts = Post::where('published', true)->get();
+
+
+        return view('posts.index', compact('posts'));
+    }
+
     public function show($post)
     {
         $post = Post::where('slug', $post)->firstOrFail();
