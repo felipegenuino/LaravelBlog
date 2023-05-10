@@ -1,16 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Editar: {{ $post->title }}') }}
+            {{ __('Editar:') }} {{ $post->title }}
         </h2>
     </x-slot>
 
     <div class=" pb-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 mt-10 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
-                    @csrf <!-- //token de segurança -->
+                <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+                    @csrf
                     @method('PUT')
+                    <input type="hidden" name="id" value="{{ $post->id }}">
+
                     <div class="w-full mb-6">
                         <label for="title" class="block text-white"> Titulo</label>
                         <input type="text" name="title" id="title" class="w-full rounded"  value="{{ $post->title }}" autofocus required>

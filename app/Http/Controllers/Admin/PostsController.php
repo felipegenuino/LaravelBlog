@@ -26,10 +26,7 @@ class PostsController extends Controller
         return view('admin.posts.create');
     }
 
-    public function edit(Post $post)
-    {
-        return view('admin.posts.edit', compact('post'));
-     }
+
 
 
 
@@ -47,6 +44,14 @@ class PostsController extends Controller
          return redirect()->route('admin.posts.index')->with('error', 'Erro ao criar post!');
 
     }
+
+
+    public function edit(Post $post)
+    {
+        return view('admin.posts.edit', compact('post'));
+     }
+
+
 
     public function update(Request $request, $id)
     {
