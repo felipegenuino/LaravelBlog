@@ -28,22 +28,21 @@ class PostsController extends Controller
 
 
 
-
-
-    public function store( Request $request ){
-      // mass assignment - atribuição em massa
-       $data = $request->all();
-       $data['slug'] = Str::slug($request->title, '-');
-
+    public function store(Request $request)
+    {
+        // mass assignment - atribuição em massa
+        $data = $request->all();
+        $slug = Str::slug($request->title, '-');
+        if (Post::where('slug', $slug)->exists()) {
+            return redirect()->route('admin.posts.create')
+                ->with('error', 'Erro ao criar post, já existe um post com este titulo:')
+                ->with('title', $request->title);
+        }
+        $data['slug'] = $slug;
         Post::create($data);
-
-        // redirecionar para a pagina de posts com uma mensagem de sucesso
         return redirect()->route('admin.posts.index')->with('success', 'Post criado com sucesso!');
-
-        // redirecionar para a pagina de posts com uma mensagem de erro
-         return redirect()->route('admin.posts.index')->with('error', 'Erro ao criar post!');
-
     }
+
 
 
 
