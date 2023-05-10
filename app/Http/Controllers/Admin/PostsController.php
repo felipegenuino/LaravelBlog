@@ -26,25 +26,14 @@ class PostsController extends Controller
         return view('admin.posts.create');
     }
 
+    public function edit(Post $post)
+    {
+        return view('admin.posts.edit', compact('post'));
+     }
+
+
+
     public function store( Request $request ){
-        // dd($request->all());
-
-
-        //Active Record Pattern
-        // $post = new Post();
-        // $post->title = $request->title;
-        // $post->description = $request->description;
-        // $post->body = $request->body;
-        // $post->published = $request->published;
-        // $post->slug = Str::slug($request->title, '-');
-        // $save = $post->save();
-
-        // if($save){
-        //     return redirect()->route('admin.posts.index')->with('success', 'Post criado com sucesso!');
-        // }else{
-        //     return redirect()->route('admin.posts.index')->with('error', 'Erro ao criar post!');
-        // }
-
       // mass assignment - atribuição em massa
        $data = $request->all();
        $data['slug'] = Str::slug($request->title, '-');
@@ -57,6 +46,24 @@ class PostsController extends Controller
         // redirecionar para a pagina de posts com uma mensagem de erro
          return redirect()->route('admin.posts.index')->with('error', 'Erro ao criar post!');
 
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+            'body' => 'required',
+            'published' => 'required|boolean',
+        ]);
+
+        $post = Post::find($id);
+        if ($post) {
+            $post->update($validatedData);
+            return redirect()->route('admin.posts.index', ['post' => $post->id])->with('success', 'Post atualizado com sucesso!');
+        } else {
+            return redirect()->route('admin.posts.index')->with('error', 'Post não encontrado!');
+        }
     }
 
 

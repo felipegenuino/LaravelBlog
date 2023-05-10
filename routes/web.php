@@ -36,6 +36,9 @@ Route::prefix('/admin')
                 Route::get('/', 'index')->name('index'); // admin.post.index
                 Route::get('/create', 'create')->name('create'); // admin.post.create
                 Route::post('/store', 'store')->name('store'); // admin.post.store
+                Route::get('/edit', 'edit')->name('edit'); // admin.post.edit
+                Route::put('/{id}', 'update')->name('update'); // admin.post.update
+
     });
 });
 
