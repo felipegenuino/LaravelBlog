@@ -6,7 +6,8 @@
     {{ $post->title }}
     {{ $post->content }}
     {{ $post->body }}
-    {{ $post->slug }}
+     {{ $post->slug }}
+    published: {{ $post->published }}
     {{ $post->thumbnail }}
     {{ $post->created_at }}
     {{ $post->updated_at }}
