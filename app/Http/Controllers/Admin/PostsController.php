@@ -46,10 +46,16 @@ class PostsController extends Controller
     }
 
 
-    public function edit(Post $post)
-    {
-        return view('admin.posts.edit', compact('post'));
-     }
+
+public function edit($id)
+{
+    // buscar o post pelo id
+    $post = Post::findOrFail($id);
+
+    // retornar a view com o formulário de edição
+    return view('admin.posts.edit', compact('post'));
+}
+
 
 
 

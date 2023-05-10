@@ -15,6 +15,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')" >
+                        {{ __('Posts') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -71,6 +75,8 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
+
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

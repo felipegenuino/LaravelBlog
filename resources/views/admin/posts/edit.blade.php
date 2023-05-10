@@ -2,13 +2,14 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Editar:') }} {{ $post->title }}
-        </h2>
+         </h2>
     </x-slot>
 
     <div class=" pb-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 mt-10 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+
+                <form action="{{ route('admin.posts.update', [$post->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="id" value="{{ $post->id }}">
@@ -19,17 +20,16 @@
                     </div>
                     <div class="w-full mb-6">
                         <label for="description" class="block text-white"> Description</label>
-                        <input type="text" name="description" id="description" class="w-full rounded" required>
+                        <input type="text" name="description" id="description" class="w-full rounded" required value="{{ $post->description }}">
                     </div>
 
                     <div class="w-full mb-6">
                         <label for="content" class="block text-white"> Conteudo</label>
-                        <textarea name="body" id="content" cols="40" rows="5" class="w-full rounded" required>{{ $post->description }}</textarea>
+                        <textarea name="body" id="content" cols="40" rows="5" class="w-full rounded" required>{{ $post->body }}</textarea>
                     </div>
 
                     <div class="w-full mb-6 text-white">
-                        <label for="" class="block"> Publicado:</label>
-                        <input type="checkbox" class="form-control" name="published" id="published" @if ($post->published) checked @endif>
+                        <input type="checkbox" class="form-control" name="published" id="published" @if ($post->published) checked @endif> <label for="published" > Publicado</label>
                     </div>
 
                     <div class="w-full flex justify-end">

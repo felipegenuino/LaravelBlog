@@ -22,8 +22,8 @@ Route::get('/posts/{post}', [App\Http\Controllers\HomeController::class, 'show']
 
 
 // Rota admin posts
-Route::get('/admin/posts', [App\Http\Controllers\Admin\PostsController::class, 'index']);
-Route::get('/admin/create', [App\Http\Controllers\Admin\PostsController::class, 'create']);
+// Route::get('/admin/posts', [App\Http\Controllers\Admin\PostsController::class, 'index'])->name('admin.index');
+// Route::get('/admin/create', [App\Http\Controllers\Admin\PostsController::class, 'create'])->name('admin.create');
 
 
 Route::prefix('/admin')
@@ -36,8 +36,8 @@ Route::prefix('/admin')
                 Route::get('/', 'index')->name('index'); // admin.post.index
                 Route::get('/create', 'create')->name('create'); // admin.post.create
                 Route::post('/store', 'store')->name('store'); // admin.post.store
-                Route::get('/edit', 'edit')->name('edit'); // admin.post.edit
-                Route::put('/{id}', 'update')->name('update'); // admin.post.update
+                Route::get('/edit/{id}', 'edit')->name('edit'); // admin.post.edit
+                Route::put('/update/{id}', 'update')->name('update'); // admin.post.update
 
     });
 });
