@@ -28,20 +28,35 @@ class PostsController extends Controller
 
     public function store( Request $request ){
         // dd($request->all());
-        $post = new Post();
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->body = $request->body;
-        $post->published = $request->published;
-        $post->slug = Str::slug($request->title, '-');
-        $save = $post->save();
+
+
+        //Active Record Pattern
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->description = $request->description;
+        // $post->body = $request->body;
+        // $post->published = $request->published;
+        // $post->slug = Str::slug($request->title, '-');
+        // $save = $post->save();
+
+        // if($save){
+        //     return redirect()->route('admin.posts.index')->with('success', 'Post criado com sucesso!');
+        // }else{
+        //     return redirect()->route('admin.posts.index')->with('error', 'Erro ao criar post!');
+        // }
+
+      // mass assignment - atribuição em massa
+       $data = $request->all();
+       $data['slug'] = Str::slug($request->title, '-');
+
+        Post::create($data);
 
         // redirecionar para a pagina de posts com uma mensagem de sucesso
-        if($save){
-            return redirect()->route('admin.posts.index')->with('success', 'Post criado com sucesso!');
-        }else{
-            return redirect()->route('admin.posts.index')->with('error', 'Erro ao criar post!');
-        }
+        return redirect()->route('admin.posts.index')->with('success', 'Post criado com sucesso!');
+
+        // redirecionar para a pagina de posts com uma mensagem de erro
+         return redirect()->route('admin.posts.index')->with('error', 'Erro ao criar post!');
+
     }
 
 
